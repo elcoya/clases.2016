@@ -1,0 +1,5 @@
+sorted_list.o sorted_list.deps : sorted_list.c sorted_list.h straight_list.h
+
+sorted_list.h:
+
+straight_list.h:
