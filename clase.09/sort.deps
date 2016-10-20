@@ -1,7 +1,0 @@
-sort.o sort.deps : sort.c product.h client.h stack.h
-
-product.h:
-
-client.h:
-
-stack.h:

@@ -20,30 +20,25 @@ int clone_product(void* dst, const void* src) {
 }
 
 void destroy_product(void* target) {
-	product_destroy((product_t*) target);
 }
 
 int clone_client(client_t* dst, client_t* src) {
 	product_t product;
 	
-	stack_t *src_cart = &(src->cart);
-	stack_t *dst_cart = &(dst->cart);	
 	stack_t auxiliary;
-
-	stack_destroy(&(dst->cart));
-
 	stack_create(&auxiliary, sizeof(product_t), clone_product, destroy_product);
 	
-	while(! stack_is_empty(src_cart)) {
-		stack_pop(src_cart, &product);
+	while(client_pop(src, &product) == RES_OK) {
 		stack_push(&auxiliary, &product);
 	}
 	
 	while(! stack_is_empty(&auxiliary)) {
 		stack_pop(&auxiliary, &product);
-		stack_push(src_cart, &product);
-		stack_push(dst_cart, &product);
+		client_push(src, &product);
+		client_push(dst, &product);
 	}
+	
+	stack_destroy(&auxiliary);
 	
 	return RES_OK;
 }
@@ -53,12 +48,22 @@ int main(int argc, char** argv) {
 	product_set_code(product, "1.01");
 	product_set_description(product, "test");
 	
+	printf("producto: {\n\tcode: \"%s\",\n\tdescription: \"%s\"\n}\n", product->code, product->description);
+	
 	client_t *client = client_create();
+	if(!client) return EXIT_FAILURE;
 	
 	client_push(client, product);
 	
+	product_t *p = client->cart.top->data;
+	printf("cliente->producto: {\n\tcode: \"%s\",\n\tdescription: \"%s\"\n}\n",  p->code, p->description);
+
 	client_t *clone = client_create();
 	clone_client(clone, client);
+	
+	p = clone->cart.top->data;
+	printf("cliente->producto: {\n\tcode: \"%s\",\n\tdescription: \"%s\"\n}\n",  p->code, p->description);
+
 	
 	product_t actual;
 	client_pop(clone, &actual);

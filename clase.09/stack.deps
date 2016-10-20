@@ -1,3 +1,0 @@
-stack.o stack.deps : stack.c stack.h
-
-stack.h:

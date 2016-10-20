@@ -7,7 +7,6 @@ int client_clone_product(void* dst, const void* src) {
 }
 
 void client_destroy_product(void* target) {
-	product_destroy((product_t*) target);
 }
 
 
@@ -16,7 +15,7 @@ client_t* client_create() {
 	client_t *client = (client_t*) malloc (sizeof(client_t));
 	if(!client) return NULL;
 	stack_create(&(client->cart), sizeof(product_t), client_clone_product, client_destroy_product);
-	return RES_OK;
+	return client;
 }
 
 void client_destroy(client_t* this) {
