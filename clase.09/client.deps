@@ -1,0 +1,7 @@
+client.o client.deps : client.c client.h stack.h product.h
+
+client.h:
+
+stack.h:
+
+product.h:

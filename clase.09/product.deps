@@ -1,0 +1,3 @@
+product.o product.deps : product.c product.h
+
+product.h:

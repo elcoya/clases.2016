@@ -1,0 +1,24 @@
+{
+	id: 85565,
+	name: "Anibal",
+	surname: "Lovaglio",
+	age: 31,
+	degree: "Ingeniero en Informatica"
+	subjects: [
+		{
+			code: "61.01",
+			name: "Analisis matematico II",
+			grade: 8
+		},
+		{
+			code: "62.02",
+			name: "Fisica II",
+			grade: 7
+		},
+		{
+			code: "75.41",
+			name: "Algoritmos y programacion II",
+			grade: 9
+		}
+	]
+}

@@ -1,0 +1,3 @@
+queue.o queue.deps : queue.c queue.h
+
+queue.h:
