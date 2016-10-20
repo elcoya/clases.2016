@@ -75,6 +75,7 @@ int main(int argc, char** argv) {
 	
 	printf("producto: {\n\tcode: \"%s\",\n\tdescription: \"%s\"\n}\n", code, description);
 	
+	
 	client_destroy(client);
 	product_destroy(product);
 		
