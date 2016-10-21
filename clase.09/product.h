@@ -16,7 +16,7 @@ typedef struct product {
 	char description[PRODUCT_DESC_LEN];
 } product_t;
 
-product_t* product_create();
+int product_create(product_t*);
 void product_destroy(product_t*);
 int product_clone(product_t*, const product_t*);
 

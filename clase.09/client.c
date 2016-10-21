@@ -6,9 +6,15 @@ int client_clone_product(void* dst, const void* src) {
 	return product_clone(p_dst, p_src);
 }
 
-void client_destroy_product(void* target) {
+void client_destroy_product(void* this) {
+	product_destroy((product_t*) this);
 }
 
+int client_clone(client_t* dst, const client_t* src) {
+	stack_clear(&(dst->cart));
+	stack_clone(&(dst->cart), &(src->cart));
+	return RES_OK;
+}
 
 /* PRIMITIVAS */
 client_t* client_create() {

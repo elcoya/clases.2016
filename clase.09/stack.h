@@ -74,6 +74,8 @@
 	 */
 	void stack_destroy(stack_t*);
 
+	void stack_clone(stack_t*, const stack_t*);
+
 	/*
 	 * stack_clear
 	 * Pre: stack creada.

@@ -1,11 +1,11 @@
 #include "product.h"
 
-product_t* product_create() {
-	return (product_t *) malloc(sizeof(product_t));
+int product_create(product_t* this) {
+	this->code[0] = this->description[0] = '\0';
+	return RES_OK;
 }
 
 void product_destroy(product_t* this) {
-	free(this);
 }
 
 int product_clone(product_t* dst, const product_t* src) {

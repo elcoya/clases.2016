@@ -13,6 +13,37 @@ void stack_destroy(stack_t* sp)
 	stack_clear(sp);
 }
 
+void stack_clone(stack_t* dst, const stack_t* src) {
+	dst->copy = src->copy;
+	dst->destroy = src->destroy;
+	dst->size = src->size;
+	
+	stack_node_t *src_i = src->top;
+	if(!src_i) {
+		dst->top = NULL;
+		return;
+	}
+
+	stack_node_t *dst_i = (stack_node_t*) malloc(sizeof(stack_node_t));
+	dst_i->data = malloc(dst->size);
+	dst->copy(dst_i->data, src_i->data);
+	dst->top = dst_i;
+	src_i = src_i->next;
+	
+	while( src_i ) {
+		
+		dst_i->next = (stack_node_t*) malloc(sizeof(stack_node_t));
+		dst_i = dst_i->next;
+		
+		dst_i->data = malloc(dst->size);
+		dst->copy(dst_i->data, src_i->data);
+		
+		src_i = src_i->next;
+	}
+	dst_i->next = NULL;
+	
+}
+
 void stack_clear(stack_t* sp)
 {
 	stack_node_t* next=sp->top;

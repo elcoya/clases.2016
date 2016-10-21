@@ -26,6 +26,10 @@ typedef struct client {
 
 client_t* client_create();
 void client_destroy(client_t*);
+
+/* PRE: el cliente destino tiene necesariamente que estar creado
+ * 
+ */
 int client_clone(client_t*, const client_t*);
 
 int client_push(client_t*, product_t*);
